@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventaris Sekolah</title>
+<style>
+:root{--navy:#12345a;--blue:#1677e8;--pale:#eef6ff;--ink:#1d2b3a;--muted:#64748b;--line:#dbe5f0;--green:#12805c;--red:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;font-weight:650}
+.primary{background:var(--blue);color:white}.secondary{background:#e8f1fc;color:var(--navy)}.danger{background:#fff0ef;color:var(--red)}.small{padding:6px 9px;font-size:13px}
+.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}.sidebar{background:var(--navy);color:white;padding:25px 16px}.brand{font-size:19px;font-weight:800;line-height:1.2;margin:0 8px 7px}.brand-sub{font-size:12px;color:#c7d8eb;margin:0 8px 28px}.nav{display:grid;gap:7px}.nav button{background:transparent;color:#dbeafe;text-align:left;font-weight:550}.nav button.active,.nav button:hover{background:#234b75;color:white}.main{padding:28px;min-width:0}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:24px}.eyebrow{color:var(--blue);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.top h1{margin:2px 0;font-size:clamp(23px,3vw,31px)}.top p{margin:3px 0;color:var(--muted)}.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 5px 18px #17365d08}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:17px}.stat span{display:block;color:var(--muted);font-size:13px}.stat strong{display:block;font-size:27px;margin-top:4px}.stat .accent{color:var(--blue)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.section-head h2{margin:0;font-size:19px}.toolbar{display:flex;gap:9px;flex-wrap:wrap}.search{min-width:210px;flex:1}.field{display:grid;gap:6px}.field label{font-size:13px;font-weight:700;color:#40536a}.field input,.field select,.field textarea,.search input{width:100%;border:1px solid #ccd8e5;border-radius:9px;padding:10px 11px;background:#fff;color:var(--ink)}.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.form-grid .wide{grid-column:1/-1}.form-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:17px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:760px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #e8eef5;vertical-align:middle}th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#65758a;background:#f8fafc}td{font-size:14px}.item-name{font-weight:750}.muted{color:var(--muted);font-size:12px}.pill{display:inline-block;border-radius:20px;padding:4px 9px;font-size:12px;font-weight:700;background:#eaf7f1;color:var(--green)}.pill.warn{background:#fff4dd;color:#986400}.pill.bad{background:#fff0ef;color:var(--red)}.empty{text-align:center;padding:30px;color:var(--muted)}.hidden{display:none!important}.label-settings{display:grid;grid-template-columns:minmax(250px, .8fr) minmax(280px,1.2fr);gap:20px;align-items:start}.label-preview{display:flex;justify-content:center;background:#f7f9fc;border:1px dashed #cbd7e5;border-radius:12px;padding:24px}.asset-label{width:340px;max-width:100%;border:1.5px solid #1e293b;border-radius:8px;background:white;color:#172033;padding:12px;display:grid;grid-template-columns:70px 1fr;gap:10px;position:relative;break-inside:avoid}.label-logo{width:58px;height:58px;border-radius:9px;background:#eaf3ff;color:#1266c3;display:grid;place-items:center;font-size:27px;font-weight:900}.label-school{font-size:11px;font-weight:800;letter-spacing:.02em;border-bottom:1px solid #d5dde7;padding-bottom:5px}.label-name{font-size:19px;font-weight:850;line-height:1.15;margin:7px 0 2px;overflow-wrap:anywhere}.label-meta{font-size:11px;color:#475569}.label-id{font-size:12px;font-weight:800;margin-top:4px}.label-bottom{grid-column:1/-1;border-top:1px solid #d5dde7;padding-top:8px;display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#334155}.barcode{height:28px;min-width:100px;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 4px,#111 4px 5px,transparent 5px 8px);opacity:.85}.label-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}.label-grid .label-preview{padding:12px}.label-grid .asset-label{transform:scale(.92);transform-origin:center}.notice{background:#eff6ff;color:#31577e;border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:16px}
+@media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{padding:15px}.brand{display:inline-block;margin-bottom:0}.brand-sub{display:inline-block;margin:0 0 0 8px}.nav{display:flex;overflow:auto;margin-top:14px}.nav button{white-space:nowrap}.main{padding:18px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.label-settings{grid-template-columns:1fr}}
+@media(max-width:560px){.top{align-items:flex-start;flex-direction:column}.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:23px}.panel{padding:15px}.search{min-width:100%}.toolbar{width:100%}.toolbar button{flex:1}}
+@media print{body{background:white}.sidebar,.top,.stats,.no-print,.panel:not(.print-area){display:none!important}.app{display:block}.main{padding:0}.print-area{border:0;box-shadow:none;padding:0;margin:0}.label-grid{grid-template-columns:repeat(2,1fr);gap:10mm}.label-grid .label-preview{border:0;background:white;padding:0}.label-grid .asset-label{transform:none;width:85mm;min-height:48mm}.asset-label{print-color-adjust:exact;-webkit-print-color-adjust:exact}.print-heading{display:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">🏫 Inventaris Sekolah</div><div class="brand-sub">Sistem Manajemen Aset</div>
+    <nav class="nav">
+      <button class="active" data-page="dashboard">▦ Dashboard</button>
+      <button data-page="items">▤ Data Barang</button>
+      <button data-page="labels">▧ Cetak Label</button>
+      <button data-page="reports">▥ Laporan</button>
+    </nav>
+  </aside>
+  <main class="main">
+    <header class="top">
+      <div><div class="eyebrow">Manajemen aset sekolah</div><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Pantau data barang dan kelola label inventaris.</p></div>
+      <button class="primary no-print" id="quickAdd">＋ Tambah Barang</button>
+    </header>
+
+    <section id="dashboardPage">
+      <div class="stats">
+        <div class="stat"><span>Total jenis barang</span><strong class="accent" id="totalTypes">0</strong></div>
+        <div class="stat"><span>Total unit</span><strong id="totalUnits">0</strong></div>
+        <div class="stat"><span>Kondisi baik</span><strong id="goodUnits">0</strong></div>
+        <div class="stat"><span>Perlu perhatian</span><strong id="attentionUnits">0</strong></div>
+      </div>
+      <div class="panel">
+        <div class="section-head"><h2>Barang terbaru</h2><button class="secondary small" data-goto="items">Lihat semua →</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Kode</th><th>Nama barang</th><th>Kategori</th><th>Lokasi</th><th>Jumlah</th><th>Kondisi</th></tr></thead><tbody id="recentRows"></tbody></table></div>
+      </div>
+      <div class="panel"><h2>Alur penggunaan</h2><p class="muted">1. Tambahkan data barang → 2. Pilih barang dan jumlah label → 3. Cetak label → 4. Tempelkan pada barang → 5. Pantau dan buat laporan.</p></div>
+    </section>
+
+    <section id="itemsPage" class="hidden">
+      <div class="panel">
+        <div class="section-head"><h2 id="formTitle">Tambah data barang</h2></div>
+        <form id="itemForm">
+          <input type="hidden" id="editId">
+          <div class="form-grid">
+            <div class="field"><label for="name">Nama barang *</label><input id="name" required placeholder="Contoh: Proyektor Epson"></div>
+            <div class="field"><label for="category">Kategori *</label><select id="category" required><option value="">Pilih kategori</option><option>Elektronik</option><option>Perabot</option><option>Alat olahraga</option><option>Buku & pembelajaran</option><option>Laboratorium</option><option>Lainnya</option></select></div>
+            <div class="field"><label for="quantity">Jumlah unit *</label><input id="quantity" type="number" min="1" value="1" required></div>
+            <div class="field"><label for="location">Lokasi *</label><input id="location" required placeholder="Contoh: Lab IPA"></div>
+            <div class="field"><label for="condition">Kondisi</label><select id="condition"><option>Baik</option><option>Perlu perawatan</option><option>Rusak</option></select></div>
+            <div class="field"><label for="date">Tanggal pendataan</label><input id="date" type="date"></div>
+            <div class="field wide"><label for="notes">Keterangan (opsional)</label><textarea id="notes" rows="2" placeholder="Merek, nomor seri, atau catatan lainnya"></textarea></div>
+          </div>
+          <div class="form-actions"><button type="button" class="secondary" id="cancelEdit">Bersihkan</button><button class="primary" type="submit" id="saveButton">Simpan Barang</button></div>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="section-head"><h2>Daftar inventaris</h2><div class="toolbar"><div class="search"><input id="searchItems" placeholder="Cari nama, kode, kategori, lokasi…"></div><button class="secondary" id="exportCsv">Ekspor CSV</button></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Kode</th><th>Nama barang</th><th>Kategori</th><th>Lokasi</th><th>Jumlah</th><th>Kondisi</th><th>Aksi</th></tr></thead><tbody id="itemRows"></tbody></table></div>
+      </div>
+    </section>
+
+    <section id="labelsPage" class="hidden">
+      <div class="panel">
+        <div class="section-head"><h2>Pengaturan label</h2><button class="primary no-print" id="printLabels">🖨 Cetak Label</button></div>
+        <div class="notice">Pilih barang dan jumlah label yang ingin dicetak. Label memuat nama sekolah, nama barang, kode inventaris, lokasi, dan barcode dekoratif.</div>
+        <div class="label-settings no-print">
+          <div class="form-grid" style="grid-template-columns:1fr">
+            <div class="field"><label for="labelItem">Pilih barang</label><select id="labelItem"></select></div>
+            <div class="field"><label for="labelCount">Jumlah label</label><input id="labelCount" type="number" min="1" max="300" value="1"></div>
+            <div class="field"><label for="schoolName">Nama sekolah pada label</label><input id="schoolName" value="NAMA SEKOLAH"></div>
+            <div class="field"><label for="labelSize">Ukuran label</label><select id="labelSize"><option value="small">Kecil (± 5 × 3 cm)</option><option value="medium" selected>Sedang (± 8,5 × 4,8 cm)</option></select></div>
+          </div>
+          <div><div class="label-preview" id="singleLabelPreview"></div><p class="muted">Pratinjau label. Lakukan uji cetak pada kertas biasa terlebih dahulu.</p></div>
+        </div>
+        <div class="print-area"><h2 class="print-heading">Label siap cetak</h2><div class="label-grid" id="labelGrid"></div></div>
+      </div>
+    </section>
+
+    <section id="reportsPage" class="hidden">
+      <div class="panel">
+        <div class="section-head"><h2>Ringkasan inventaris</h2><div class="toolbar"><button class="secondary" id="reportCsv">Ekspor CSV</button><button class="primary" id="printReport">Cetak laporan</button></div></div>
+        <div class="stats">
+          <div class="stat"><span>Jenis barang</span><strong id="rTypes">0</strong></div>
+          <div class="stat"><span>Total unit</span><strong id="rUnits">0</strong></div>
+          <div class="stat"><span>Kondisi baik</span><strong id="rGood">0</strong></div>
+          <div class="stat"><span>Rusak</span><strong id="rBroken">0</strong></div>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>Kode</th><th>Nama barang</th><th>Kategori</th><th>Lokasi</th><th>Jumlah</th><th>Kondisi</th><th>Tanggal</th></tr></thead><tbody id="reportRows"></tbody></table></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script>
+const STORAGE_KEY = 'inventaris-sekolah-v1';
+let items = [];
+try { items = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { items = []; }
+const $ = id => document.getElementById(id);
+const today = new Date().toISOString().slice(0,10);
+$('date').value = today;
+function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); }
+function escapeHtml(value=''){return String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function codeFor(index){return 'INV-'+String(index).padStart(4,'0');}
+function getCode(item){return item.code || 'INV-'+String(item.id).padStart(4,'0');}
+function conditionPill(condition){let cls=condition==='Rusak'?'bad':condition==='Perlu perawatan'?'warn':'';return `<span class="pill ${cls}">${escapeHtml(condition)}</span>`;}
+function sum(key){return items.reduce((n,x)=>n+Number(x[key]||0),0);}
+function render(){
+  $('totalTypes').textContent=items.length;$('totalUnits').textContent=sum('quantity');
+  $('goodUnits').textContent=items.filter(x=>x.condition==='Baik').reduce((n,x)=>n+Number(x.quantity),0);
+  $('attentionUnits').textContent=items.filter(x=>x.condition!=='Baik').reduce((n,x)=>n+Number(x.quantity),0);
+  $('rTypes').textContent=items.length;$('rUnits').textContent=sum('quantity');$('rGood').textContent=items.filter(x=>x.condition==='Baik').reduce((n,x)=>n+Number(x.quantity),0);$('rBroken').textContent=items.filter(x=>x.condition==='Rusak').reduce((n,x)=>n+Number(x.quantity),0);
+  const row = x=>`<tr><td><strong>${escapeHtml(getCode(x))}</strong></td><td><div class="item-name">${escapeHtml(x.name)}</div><div class="muted">${escapeHtml(x.notes||'')}</div></td><td>${escapeHtml(x.category)}</td><td>${escapeHtml(x.location)}</td><td>${x.quantity}</td><td>${conditionPill(x.condition)}</td></tr>`;
+  $('recentRows').innerHTML=items.slice(-5).reverse().map(row).join('')||'<tr><td colspan="6" class="empty">Belum ada data barang. Tambahkan barang pertama Anda.</td></tr>';
+  const query=$('searchItems').value.toLowerCase();
+  const filtered=items.filter(x=>[x.name,x.category,x.location,getCode(x)].join(' ').toLowerCase().includes(query));
+  $('itemRows').innerHTML=filtered.map(x=>`<tr><td><strong>${escapeHtml(getCode(x))}</strong></td><td><div class="item-name">${escapeHtml(x.name)}</div><div class="muted">${escapeHtml(x.notes||'')}</div></td><td>${escapeHtml(x.category)}</td><td>${escapeHtml(x.location)}</td><td>${x.quantity}</td><td>${conditionPill(x.condition)}</td><td><div class="toolbar"><button class="secondary small" onclick="editItem('${x.id}')">Edit</button><button class="danger small" onclick="deleteItem('${x.id}')">Hapus</button><button class="secondary small" onclick="quickLabel('${x.id}')">Label</button></div></td></tr>`).join('')||'<tr><td colspan="7" class="empty">Data tidak ditemukan.</td></tr>';
+  $('reportRows').innerHTML=items.map(x=>`<tr><td>${escapeHtml(getCode(x))}</td><td>${escapeHtml(x.name)}</td><td>${escapeHtml(x.category)}</td><td>${escapeHtml(x.location)}</td><td>${x.quantity}</td><td>${conditionPill(x.condition)}</td><td>${escapeHtml(x.date||'-')}</td></tr>`).join('')||'<tr><td colspan="7" class="empty">Belum ada data.</td></tr>';
+  const old=$('labelItem').value;
+  $('labelItem').innerHTML=items.map(x=>`<option value="${x.id}">${escapeHtml(getCode(x))} — ${escapeHtml(x.name)}</option>`).join('')||'<option value="">Belum ada barang</option>';
+  if(items.some(x=>x.id===old))$('labelItem').value=old;
+  renderLabelPreview();
+}
+function resetForm(){ $('itemForm').reset();$('editId').value='';$('date').value=today;$('formTitle').textContent='Tambah data barang';$('saveButton').textContent='Simpan Barang'; }
+$('itemForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const editId=$('editId').value;
+  const data={name:$('name').value.trim(),category:$('category').value,quantity:Math.max(1,parseInt($('quantity').value)||1),location:$('location').value.trim(),condition:$('condition').value,date:$('date').value||today,notes:$('notes').value.trim()};
+  if(!data.name||!data.category||!data.location)return;
+  if(editId){items=items.map(x=>x.id===editId?{...x,...data}:x);}
+  else{const id=(Date.now().toString(36)+Math.random().toString(36).slice(2,6));data.id=id;data.code='INV-'+String(Math.max(0,...items.map(x=>Number((x.code||'').replace('INV-',''))||0))+1).padStart(4,'0');items.push(data);}
+  save();resetForm();render();showPage('items');window.scrollTo({top:0,behavior:'smooth'});
+});
+window.editItem=id=>{const x=items.find(i=>i.id===id);if(!x)return;showPage('items');$('editId').value=x.id;$('name').value=x.name;$('category').value=x.category;$('quantity').value=x.quantity;$('location').value=x.location;$('condition').value=x.condition;$('date').value=x.date||today;$('notes').value=x.notes||'';$('formTitle').textContent='Edit data barang';$('saveButton').textContent='Simpan Perubahan';window.scrollTo({top:0,behavior:'smooth'});};
+window.deleteItem=id=>{const x=items.find(i=>i.id===id);if(x&&confirm(`Hapus data "${x.name}"?`)){items=items.filter(i=>i.id!==id);save();render();}};
+window.quickLabel=id=>{showPage('labels');$('labelItem').value=id;$('labelCount').value=1;renderLabelPreview();};
+$('cancelEdit').onclick=resetForm;$('searchItems').addEventListener('input',render);
+$('quickAdd').onclick=()=>{showPage('items');resetForm();$('name').focus();};
+function showPage(page){
+  ['dashboard','items','labels','reports'].forEach(p=>$(p+'Page').classList.toggle('hidden',p!==page));
+  document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+  const titles={dashboard:['Dashboard','Pantau data barang dan kelola label inventaris.'],items:['Data Barang','Tambah, cari, edit, dan kelola aset sekolah.'],labels:['Cetak Label','Buat label inventaris yang siap ditempel.'],reports:['Laporan Inventaris','Ringkasan dan ekspor data inventaris sekolah.']};
+  $('pageTitle').textContent=titles[page][0];$('pageSubtitle').textContent=titles[page][1];$('quickAdd').classList.toggle('hidden',page==='items');
+  if(page==='labels')renderLabelPreview();
+}
+document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>showPage(b.dataset.goto));
+function currentLabelItem(){return items.find(x=>x.id===$('labelItem').value)||items[0]||{id:'',code:'INV-0000',name:'Contoh Barang',category:'Kategori',location:'Lokasi',quantity:1,date:today};}
+function labelHTML(x,school){
+  return `<div class="asset-label"><div class="label-logo">✚</div><div><div class="label-school">${escapeHtml(school||'NAMA SEKOLAH')}</div><div class="label-name">${escapeHtml(x.name)}</div><div class="label-meta">${escapeHtml(x.category)} · ${escapeHtml(x.condition||'')}</div><div class="label-id">${escapeHtml(getCode(x))}</div></div><div class="label-bottom"><div><b>Lokasi:</b> ${escapeHtml(x.location)}<br><b>Tgl:</b> ${escapeHtml(x.date||'-')}</div><div class="barcode" aria-label="barcode dekoratif"></div></div></div>`;
+}
+function renderLabelPreview(){
+  const x=currentLabelItem(), school=$('schoolName').value;
+  $('singleLabelPreview').innerHTML=labelHTML(x,school);
+  const count=Math.min(300,Math.max(1,parseInt($('labelCount').value)||1));
+  $('labelGrid').innerHTML=items.length?Array.from({length:count},()=>`<div class="label-preview">${labelHTML(x,school)}</div>`).join(''):'<div class="empty">Tambahkan data barang terlebih dahulu.</div>';
+}
+['labelItem','labelCount','schoolName','labelSize'].forEach(id=>$(id).addEventListener('input',renderLabelPreview));
+$('printLabels').onclick=()=>{if(!items.length){alert('Tambahkan data barang terlebih dahulu.');return;}renderLabelPreview();window.print();};
+function exportCSV(){
+  const headers=['Kode','Nama Barang','Kategori','Jumlah','Lokasi','Kondisi','Tanggal','Keterangan'];
+  const rows=items.map(x=>[getCode(x),x.name,x.category,x.quantity,x.location,x.condition,x.date,x.notes]);
+  const csv=[headers,...rows].map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(';')).join('\r\n');
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='laporan-inventaris-sekolah.csv';a.click();URL.revokeObjectURL(url);
+}
+$('exportCsv').onclick=exportCSV;$('reportCsv').onclick=exportCSV;$('printReport').onclick=()=>window.print();
+render();
+</script>
+</body>
+</html>
